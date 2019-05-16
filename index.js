@@ -1,19 +1,6 @@
-require("dotenv").config();
-const express = require("express");
-const server = express();
-const hobbits = require("./hobbits/hobbitsModel");
+require('dotenv').config();
 
-server.use(express.json());
-
-server.get("/", async (req, res) => {
-  res.status(200).json({ api: "up" });
-});
-
-server.get("/hobbits", async (req, res) => {
-  const rows = await hobbits.getAll();
-
-  res.status(200).json(rows);
-});
+const server = require('./api/server.js');
 
 const port = process.env.PORT || 5000;
-server.listen(port, () => console.log("blahh"));
+server.listen(port, () => console.log(`\n** server up on port ${port} **\n`));
